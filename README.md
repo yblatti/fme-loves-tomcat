@@ -1,7 +1,7 @@
 # FME loves tomcat ! ⚙️🔵🔴+🐱=❤️
  
 Proof on concept for FME Form (Desktop) running in a container, using a FLEXlm License server.  
-Here this is done in a Tomcat container as this could elp us run https://github.com/asit-asso/extract in a container.
+Here this is done in a Tomcat container as this could help us run https://github.com/asit-asso/extract in a container.
 
 To run the tomcat-fme container you need two env variables :
 ```sh
