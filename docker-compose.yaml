@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+    demo_db_data:
+
+services:
+    pgsql:
+        image: postgres:14-alpine
+        restart: always
+        volumes:
+            - demo_db_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=yolodb
+            - POSTGRES_USER=beloveduser
+            - POSTGRES_PASSWORD=UltraSercretPassword<3
+        ports:
+            - "5432:5432"
+
+    tomcat-fme:
+        build:
+            context: .
+            dockerfile: ./docker/tomcat-fme/Dockerfile
+        restart: always
+        depends_on:
+            - pgsql
+        environment:
+            - JAVA_OPTS=-Xms1G -Xmx1G -Duser.language=fr -Duser.region=CH
+            - FME_LIC_SERVER=192.168.99.99
+            - FME_LIC_TYPE=professional
+        ports:
+            - "8080:8080"
